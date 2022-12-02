@@ -1,0 +1,13 @@
+1.
+select avg(waga) from kreatura where rodzaj = 'wiking';
+select avg(waga) ,count(rodzaj),rodzaj from kreatura group by rodzaj;
+select avg(year(dataUr)) ,count(rodzaj),rodzaj from kreatura group by rodzaj;
+
+2.
+select sum(waga),rodzaj from kreatura group by rodzaj;
+select nazwa, avg(waga) from zasob group by nazwa having avg(waga)>10 and sum(ilosc) >=4;
+select rodzaj, count(nazwa) from zasob group by rodzaj having count(nazwa) > 1;
+
+3.
+select nazwa , ilosc from kreatura, ekwipunek where kreatura.idKreatury = ekwipunek.idKreatury;
+inner join zasob on zasob.idZasobu=ekwipunek.idZasobu on kreatura.idKreatury=ekwipunek.idKreatury;
