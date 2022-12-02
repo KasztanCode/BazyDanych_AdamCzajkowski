@@ -43,3 +43,15 @@
 #select * from zasob where rodzaj = 'jedzenie';
 #create table ekwipunek select * from wikingowie.ekwipunek;
 #select idZasobu from zasob where rodzaj = 'jedzenie';
+3.
+select * from zasob where MONTH(dataPozyskania) = '07' or MONTH(dataPozyskania) = '08';
+select * from zasob where rodzaj is not NULL order by waga desc;
+select * from kreatura order by dataUr asc limit 5;
+4.
+select distinct rodzaj from zasob;
+select concat(nazwa,' ',rodzaj) as nazwaRodzaj from kreatura where rodzaj like 'wi%';
+select *,(ilosc*waga) from zasob where year(dataPozyskania) between '2000' and '2007';
+5.
+select nazwa, waga*0.7 as waga, waga*0.3 as odpadki from zasob where rodzaj ='jedzenie';
+select * from zasob where rodzaj is NULL;
+select distinct rodzaj from zasob where nazwa like 'Ba%' or nazwa like '%os' order by nazwa asc;
