@@ -11,3 +11,13 @@ select rodzaj, count(nazwa) from zasob group by rodzaj having count(nazwa) > 1;
 3.
 select nazwa , ilosc from kreatura, ekwipunek where kreatura.idKreatury = ekwipunek.idKreatury;
 inner join zasob on zasob.idZasobu=ekwipunek.idZasobu on kreatura.idKreatury=ekwipunek.idKreatury;
+
+4.1
+SELECT kreatura.nazwa, zasob.nazwa, dataUr  FROM wikingowie.zasob INNER JOIN wikingowie.kreatura 
+INNER JOIN wikingowie.ekwipunek ON wikingowie.ekwipunek.idKreatury=k.idKreatury ON 
+wikingowie.ekwipunek.idZasobu=z.idZasobu WHERE dataUr LIKE '167%';
+4.2
+
+SELECT dataUr, kreatura.nazwa, zasob.rodzaj FROM wikingowie.kreatura INNER JOIN wikingowie.ekwipunek 
+INNER JOIN wikingowie.zasob z ON zasob.idZasobu=ekwipunek.idZasobu ON kreatura.idKreatury=ekwipunek.idKreatury WHERE zasob.rodzaj='jedzenie' 
+ORDER BY dataUr ASC LIMIT 5;
