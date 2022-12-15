@@ -8,27 +8,33 @@ select sum(waga),rodzaj from kreatura group by rodzaj;
 select nazwa, avg(waga) from zasob group by nazwa having avg(waga)>10 and sum(ilosc) >=4;
 select rodzaj, count(nazwa) from zasob group by rodzaj having count(nazwa) > 1;
 
-3.
-select nazwa , ilosc from kreatura, ekwipunek where kreatura.idKreatury = ekwipunek.idKreatury;
-inner join zasob on zasob.idZasobu=ekwipunek.idZasobu on kreatura.idKreatury=ekwipunek.idKreatury;
+3.1 select kreatura.idKreatury , ekwipunek.ilosc from ekwipunek inner join kreatura on kreatura.idKreatury = ekwipunek.idKreatury;
+3.2 select kreatura.idKreatury , ekwipunek.ilosc, zasob.nazwa from ekwipunek inner join kreatura on kreatura.idKreatury = ekwipunek.idKreatury
+inner join zasob on ekwipunek.idZasobu = zasob.idZasobu;
+3.3 select kreatura.idKreatury , ekwipunek.idEkwipunku from kreatura left join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury
+where ekwipunek.idEkwipunku is null
+order by
+kreatura.idKreatury;
 
 4.1
 SELECT kreatura.nazwa, zasob.nazwa, dataUr  FROM wikingowie.zasob INNER JOIN wikingowie.kreatura 
 INNER JOIN wikingowie.ekwipunek ON wikingowie.ekwipunek.idKreatury=k.idKreatury ON 
 wikingowie.ekwipunek.idZasobu=z.idZasobu WHERE dataUr LIKE '167%';
 4.2
-
 SELECT dataUr, kreatura.nazwa, zasob.rodzaj FROM wikingowie.kreatura INNER JOIN wikingowie.ekwipunek 
 INNER JOIN wikingowie.zasob z ON zasob.idZasobu=ekwipunek.idZasobu ON kreatura.idKreatury=ekwipunek.idKreatury WHERE zasob.rodzaj='jedzenie' 
 ORDER BY dataUr ASC LIMIT 5;
+4.3
+select nazwa from kreatura where not idKreatury = 5;
 
-#select sum(ekwipunek.ilosc*zasob.ilosc), zasob.nazwa , ekwipunek.idEkwipunku from zasob 
-#inner join ekwipunek on ekwipunek.idZasobu = zasob.idZasobu 
-#inner join kreatura on kreatura.idKreatury = ekwipunek.idKreatury 
-#group by nazwa;
+5.1
+select sum(ekwipunek.ilosc*zasob.ilosc), zasob.nazwa , ekwipunek.idEkwipunku from zasob 
+inner join ekwipunek on ekwipunek.idZasobu = zasob.idZasobu 
+inner join kreatura on kreatura.idKreatury = ekwipunek.idKreatury 
+group by nazwa;
 
-#select kreatura.rodzaj,sum(ekwipunek.ilosc*zasob.waga)/count(distinct(kreatura.nazwa)) as srednia
-#from kreatura join ekwipunek on kreatura.idKreatury=ekwipunek.idKreatury
-#join zasob on ekwipunek.idZasobu = zasob.idZasobu
-#where kreatura.rodzaj not in ('malpa','waz')
-#group by kreatura.rodzaj;
+select kreatura.rodzaj,sum(ekwipunek.ilosc*zasob.waga)/count(distinct(kreatura.nazwa)) as srednia
+from kreatura join ekwipunek on kreatura.idKreatury=ekwipunek.idKreatury
+join zasob on ekwipunek.idZasobu = zasob.idZasobu
+where kreatura.rodzaj not in ('malpa','waz')
+group by kreatura.rodzaj;
