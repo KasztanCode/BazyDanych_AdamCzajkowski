@@ -21,3 +21,14 @@ wikingowie.ekwipunek.idZasobu=z.idZasobu WHERE dataUr LIKE '167%';
 SELECT dataUr, kreatura.nazwa, zasob.rodzaj FROM wikingowie.kreatura INNER JOIN wikingowie.ekwipunek 
 INNER JOIN wikingowie.zasob z ON zasob.idZasobu=ekwipunek.idZasobu ON kreatura.idKreatury=ekwipunek.idKreatury WHERE zasob.rodzaj='jedzenie' 
 ORDER BY dataUr ASC LIMIT 5;
+
+#select sum(ekwipunek.ilosc*zasob.ilosc), zasob.nazwa , ekwipunek.idEkwipunku from zasob 
+#inner join ekwipunek on ekwipunek.idZasobu = zasob.idZasobu 
+#inner join kreatura on kreatura.idKreatury = ekwipunek.idKreatury 
+#group by nazwa;
+
+#select kreatura.rodzaj,sum(ekwipunek.ilosc*zasob.waga)/count(distinct(kreatura.nazwa)) as srednia
+#from kreatura join ekwipunek on kreatura.idKreatury=ekwipunek.idKreatury
+#join zasob on ekwipunek.idZasobu = zasob.idZasobu
+#where kreatura.rodzaj not in ('malpa','waz')
+#group by kreatura.rodzaj;
