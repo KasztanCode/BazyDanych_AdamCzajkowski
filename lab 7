@@ -1,0 +1,11 @@
+show create table uczestnicy;
+select idKreatury from kreatura;
+select id_uczestnika from uczestnicy;
+
+select kreatura.nazwa,uczestnicy.id_uczestnika from kreatura
+left join uczestnicy on uczestnicy.id_uczestnika = kreatura.idKreatury where id_uczestnika is null;
+
+select * from wyprawa
+inner join uczestnicy on wyprawa.id_wyprawy=uczestnicy.id_wyprawy
+inner join ekwipunek on uczestnicy = ekwipunek.idKreatury
+group by wyprawa.id_wyprawy;
