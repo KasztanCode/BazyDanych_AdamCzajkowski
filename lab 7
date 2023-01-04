@@ -20,3 +20,22 @@ select wyprawa.nazwa, count(uczestnicy.id_uczestnika), group_concat(kreatura.naz
 inner join uczestnicy on uczestnicy.id_wyprawy = wyprawa.id_wyprawy
 inner join kreatura on kreatura.idKreatury = uczestnicy.id_uczestnika
 group by wyprawa.nazwa;
+
+miałem to zrobione przed świętami niestety nie dodałem z powodu choroby
+
+select wyprawa.nazwa, group_concat(idEtapu), group_concat (dziennik), wyprawa.kierownik from wyprawa
+inner join etapy_wypraw on wyprawa.id_wyprawy = etapy_wyprawy. idwyprawy
+group by wyprawa. idwyprawy; 
+
+select kreatura.nazwa from kreatura inner join wyprawa on
+kreatura. idKreatury = wyprawa.kierownik group by kreatura;
+
+3.1
+select count (idEtapu) as iloscOdwiedzin , sektor. id sektora from sektor left join etapy_wyprawy on sektor.id_sektora - etapy_wyprawy. sektor group by id_sektora;
+
+3.2
+select IF(count (id_wyprawy)=0, 'nie bral', 'bral') as czyBral
+• kreatura.nazwa from kreatura
+left join uczestnicy on uczestnicy.id_uczestnika = kreatura.idkreatury
+group by kreatura. idKreatury;
+
